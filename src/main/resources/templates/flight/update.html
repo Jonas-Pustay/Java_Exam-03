@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common.html :: #header">
+<body>
+<div class="container">
+	<div th:replace="common.html :: #menu"></div>
+	<div class="row">
+		<h2>Modifier l'étudiant</h2>
+	</div>
+
+	<div class="row">
+		<form action="#" th:action="@{/flight/update}" th:object="${flight}" method="post" class="form-horizontal" style="width: 100%">
+			
+            <div class="form-group">
+				<label for="airplaneId" class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-10">
+					<select name="airplaneId" th:field="*{airplaneId}" id="airplane">
+						<option th:each="airplane : ${airplanes}" th:value="${airplane.id}" th:text="${airplane.name}"/>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="departureCityId" class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-10">
+					<select name="departureCityId" th:field="*{departureCityId}">
+						<option th:each="city : ${citys}" th:value="${city.id}" th:text="${city.name}"/>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="arrivalCityId" class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-10">
+					<select name="arrivalCityId" th:field="*{arrivalCityId}">
+						<option th:each="city : ${citys}" th:value="${city.id}" th:text="${city.name}"/>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="departureTime" class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-10">
+					<input type="date" th:field="*{departureTime}" id="departureTime" placeholder="référence avion" class="col-4">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="arrivalTime" class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-10">
+					<input type="date" th:field="*{arrivalTime}" id="arrivalTime" placeholder="référence avion" class="col-4">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-12">
+					<input hidden type="text" th:field="*{flightNumber}" id="flightNumber" placeholder="numéro de vol" class="col-4">
+					<a class="btn btn-danger btn-sm" href="/flight/list">Annuler</a>
+					<input class="btn btn-primary btn-sm" type="submit" value="Enregistrer">
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+</div>
+</body>
+</html>

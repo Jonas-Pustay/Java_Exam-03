@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common.html :: #header">
+</head>
+<body>
+<div class="container">
+	<div th:replace="common.html :: #menu"></div>
+	<div class="row"><h2>La liste des étudiants</h2></div>
+	<div class="row">
+		<p> <a href="/flight/add" class="btn btn-primary btn-sm">Nouveau vol</a></p>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>flightNumber</th>
+					<th>airplaneId</th>
+					<th>departureCityId</th>
+					<th>arrivalCityId</th>
+					<th>departureTime</th>
+					<th>arrivalTime</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="flight : ${flights}">
+					<td style="width: 10%" th:text="${flight.flightNumber}"></td>
+					<td th:text="${flight.airplaneId}"></td>
+					<td th:text="${flight.departureCityId}"></td>
+					<td th:text="${flight.arrivalCityId}"></td>
+					<td th:text="${flight.departureTime}"></td>
+					<td th:text="${flight.arrivalTime}"></td>
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/flight/update/{id}(id=${flight.flightNumber})}">Modifier</a>&nbsp;|&nbsp;
+						<a th:href="@{/flight/delete/{id}(id=${flight.flightNumber})}">Supprimer</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>
